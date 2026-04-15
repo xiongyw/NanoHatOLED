@@ -375,6 +375,14 @@ def drawImage(image):
                 bits |= 0 if pix[x, page*8+7-bit] == 0 else 1
             bitList.append(bits)
 
+    sendCommand(0x21) # Set Column Address
+    sendCommand(0)
+    sendCommand(127)
+
+    sendCommand(0x22) # Set Page Address
+    sendCommand(0)
+    sendCommand(7)
+
     for chunk in chunks(bitList, 32):
         sendArrayData(chunk)
 
