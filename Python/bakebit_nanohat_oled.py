@@ -317,10 +317,8 @@ def receive_signal(signum, stack):
                 update_page_index(4)
             else:
                 update_page_index(3)
-            draw_page()
         else:
             update_page_index(0)
-            draw_page()
         print('K1 released')
 
     if signum == signal.SIGUSR2:
@@ -328,24 +326,18 @@ def receive_signal(signum, stack):
         if is_showing_power_msgbox():
             if page_index==4:
                 update_page_index(5)
-                draw_page()
-
             else:
                 update_page_index(0)
-                draw_page()
         else:
             update_page_index(1)
-            draw_page()
         print('K2 released')
 
     if signum == signal.SIGALRM:
         print('K3 pressed')
         if is_showing_power_msgbox():
             update_page_index(0)
-            draw_page()
         else:
             update_page_index(3)
-            draw_page()
         print('K3 released')
 
 

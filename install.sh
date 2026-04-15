@@ -81,6 +81,9 @@ EOL
 fi
 echo "Make NanoHatOLED autostart."
 
+echo "Disabling rc.local systemd service to prevent duplicate daemon starts..."
+systemctl disable rc.local || true
+
 echo " "
 echo "Please restart to implement changes!"
 echo "  _____  ______  _____ _______       _____ _______ "

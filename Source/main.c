@@ -77,10 +77,11 @@ int main(int argc, char* argv[]) {
     int i, n;
     char ch;
 
+    daemonize("nanohat-oled");
+
     if (isAlreadyRunning() == 1) {
         exit(3);
     }
-    daemonize("nanohat-oled");
 
     int ret = get_work_path(workpath, sizeof(workpath));
     if (ret != 0) {

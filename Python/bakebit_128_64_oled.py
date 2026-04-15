@@ -244,6 +244,7 @@ def base_init():
 # Init function of the OLED
 def init():
         sendCommand(0xAE)    #display off
+        sendCommand(0x2E)    #deactivate scroll
 
         sendCommand(0x00)    #set lower column address
         sendCommand(0x10)    #set higher column address
@@ -385,6 +386,7 @@ def drawImage(image):
 
     for chunk in chunks(bitList, 32):
         sendArrayData(chunk)
+        time.sleep(0.001)
 
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
