@@ -11,8 +11,9 @@ echo ""
 echo "Steps:"
 echo "Installs package dependencies:"
 echo "  - python3       interactive high-level object-oriented language, python3 version"
-#echo "  - python3-dev   header files and a static library for Python3"
-echo "  - BakeBit       an open source platform for connecting BakeBit Sensors to the Pi"
+echo "  - python3-smbus Python3 bindings for Linux SMBus access through i2c-dev"
+echo "  - python3-pil   Python Imaging Library (Python3)"
+echo "  - i2c-tools     This Python module allows SMBus access through the I2C /dev"
 echo ""
 sleep 3
 
@@ -45,8 +46,7 @@ sudo apt-get update --yes
 echo ""
 echo "Installing Dependencies"
 echo "======================="
-#sudo apt-get install gcc python3 python3-dev -y
-sudo apt-get install gcc python3 -y
+sudo apt-get install gcc python3 python3-smbus python3-pil python3-psutil i2c-tools -y
 echo "Dependencies installed"
 
 if [ ! -f /usr/bin/python3 ]; then
@@ -81,11 +81,29 @@ EOL
 fi
 echo "Make NanoHatOLED autostart."
 
-if [ ! -f BakeBit/install.sh ]; then
-    git submodule init
-    git submodule update --remote
-fi
-
-cd BakeBit/
-sudo ./install.sh
+echo " "
+echo "Please restart to implement changes!"
+echo "  _____  ______  _____ _______       _____ _______ "
+echo " |  __ \ |  ____|/ ____|__   __|/\   |  __ \__   __|"
+echo " | |__) || |__  | (___    | |  /  \  | |__) | | |   "
+echo " |  _  / |  __|  \___ \   | | / /\ \ |  _  /  | |   "
+echo " | | \ \ | |____ ____) |  | |/ ____ \| | \ \  | |   "
+echo " |_|  \_\|______|_____/   |_/_/    \_\_|  \_\ |_|   "
+echo " "
+echo "To finish changes, we will reboot the Pi."
+echo "Pi must reboot for changes and updates to take effect."
+echo "If you need to abort the reboot, press Ctrl+C.  Otherwise, reboot!"
+echo "Rebooting in 5 seconds!"
+sleep 1
+echo "Rebooting in 4 seconds!"
+sleep 1
+echo "Rebooting in 3 seconds!"
+sleep 1
+echo "Rebooting in 2 seconds!"
+sleep 1
+echo "Rebooting in 1 seconds!"
+sleep 1
+echo "Rebooting now!  "
+sleep 1
+sudo reboot
 

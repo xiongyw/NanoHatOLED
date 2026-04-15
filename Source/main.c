@@ -286,7 +286,7 @@ void* threadfunc(char* arg) {
 int load_python_view(char *workpath) {
     int ret;
     char* cmd = (char*)malloc(255);
-    sprintf(cmd, "cd %s/BakeBit/Software/Python && python3 %s 2>&1 | tee /tmp/nanoled-python.log", workpath, PYTHON3_SCRIPT);
+    sprintf(cmd, "cd %s/Python && python3 %s 2>&1 | tee /tmp/nanoled-python.log", workpath, PYTHON3_SCRIPT);
     ret = pthread_create(&view_thread_id, NULL, (void*)threadfunc, cmd);
     if(ret) {
         log2file("create pthread error \n");
