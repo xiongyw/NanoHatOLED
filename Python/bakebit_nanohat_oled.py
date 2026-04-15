@@ -80,21 +80,74 @@ global fontb14
 fontb14 = ImageFont.truetype('DejaVuSansMono-Bold.ttf', 14);
 global font11
 font11 = ImageFont.truetype('DejaVuSansMono.ttf', 11);
+global font20
+font20 = ImageFont.truetype('DejaVuSansMono-Bold.ttf', 20);
 
 global lock
 lock = threading.Lock()
 
-def get_ip():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        # doesn't even have to be reachable
-        s.connect(('10.255.255.255', 1))
-        IP = s.getsockname()[0]
-    except:
-        IP = '127.0.0.1'
-    finally:
-        s.close()
-    return IP
+global scroll_x
+scroll_x = 0
+global cached_ips
+cached_ips = ""
+global last_ip_update
+last_ip_update = 0
+global ticker_text
+ticker_text = ""
+global ticker_img
+ticker_img = None
+global ticker_w
+ticker_w = 1
+
+def get_ticker_image(text, font):
+    global ticker_text, ticker_img, ticker_w
+    if ticker_text != text or ticker_img is None:
+        ticker_text = text
+        try:
+            w, h = draw.textsize(text, font=font)
+        except AttributeError:
+            bbox = draw.textbbox((0, 0), text, font=font)
+            w = bbox[2] - bbox[0]
+            h = bbox[3] - bbox[1]
+        
+        if w == 0:
+            w = 1
+        ticker_w = w
+        
+        # Create an image long enough to safely crop wrapping text
+        # (width + screen_width) so we can crop from any x in [0, w) without out-of-bounds
+        ticker_img = Image.new('1', (w + 128, 22))
+        tdraw = ImageDraw.Draw(ticker_img)
+        tdraw.text((0, 0), text, font=font, fill=255)
+        tdraw.text((w, 0), text, font=font, fill=255)
+        
+    return ticker_img, ticker_w
+
+def get_all_ips():
+    global cached_ips
+    global last_ip_update
+    current_time = time.time()
+    if current_time - last_ip_update > 2: # update every 2 seconds
+        cmd = "ip -4 -o addr show up | awk '$2 != \"lo\" {print $2\": \"$4}'"
+        try:
+            output = subprocess.check_output(cmd, shell=True).decode('utf-8').strip()
+            ips = []
+            for line in output.split('\n'):
+                line = line.strip() # Strip \r or trailing spaces
+                if line:
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        iface = parts[0].rstrip(':')
+                        ip = parts[1].split('/')[0]
+                        ips.append(iface + ": " + ip + ";")
+            if not ips:
+                cached_ips = "no ip address"
+            else:
+                cached_ips = " ".join(ips)
+        except:
+            cached_ips = "Error"
+        last_ip_update = current_time
+    return cached_ips
 
 def draw_page():
     global drawing
@@ -148,30 +201,31 @@ def draw_page():
         text = time.strftime("%X")
         draw.text((2,40),text,font=fontb24,fill=255)
     elif page_index==1:
-        # Draw some shapes.
-        # First define some constants to allow easy resizing of shapes.
-        padding = 0
-        top = padding
-        bottom = height-padding
-        # Move left to right keeping track of the current x position for drawing shapes.
-        x = 0
-        IPAddress = get_ip()
-        cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
-        CPU = subprocess.check_output(cmd, shell=True).decode('utf-8')
-        cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
-        MemUsage = subprocess.check_output(cmd, shell=True).decode('utf-8')
-        cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
-        Disk = subprocess.check_output(cmd, shell=True).decode('utf-8')
-        tempI = int(open('/sys/class/thermal/thermal_zone0/temp').read());
-        if tempI>1000:
-            tempI = tempI/1000
-        tempStr = "CPU TEMP: %sC" % str(tempI)
-
-        draw.text((x, top+5),       "IP: " + str(IPAddress),  font=smartFont, fill=255)
-        draw.text((x, top+5+12),    str(CPU), font=smartFont, fill=255)
-        draw.text((x, top+5+24),    str(MemUsage),  font=smartFont, fill=255)
-        draw.text((x, top+5+36),    str(Disk),  font=smartFont, fill=255)
-        draw.text((x, top+5+48),    tempStr,  font=smartFont, fill=255)
+        global scroll_x
+        # Uncomment next line to test fake long text
+        # text = "1: line one 2: line two 3: line three "
+        text = get_all_ips() + "   "
+        
+        t_img, t_w = get_ticker_image(text, font20)
+        
+        # Move text left by 4 pixels, wrap around at text_width seamlessly
+        scroll_x = (abs(scroll_x) + 4) % t_w
+        
+        # Line 1: crop from scroll_x
+        crop1 = t_img.crop((scroll_x, 0, scroll_x + width, 22))
+        image.paste(crop1, (0, 1))
+        
+        # Line 2: crop from scroll_x + width
+        scroll2 = (scroll_x + width) % t_w
+        crop2 = t_img.crop((scroll2, 0, scroll2 + width, 22))
+        image.paste(crop2, (0, 22))
+        
+        # Line 3: crop from scroll_x + width * 2
+        scroll3 = (scroll_x + width * 2) % t_w
+        crop3 = t_img.crop((scroll3, 0, scroll3 + width, 22))
+        image.paste(crop3, (0, 43))
+        
+        scroll_x = -scroll_x # keep it negative for consistency if needed, but we use abs() above so it doesn't matter
     elif page_index==3: #shutdown -- no
         draw.text((2, 2),  'Shutdown?',  font=fontb14, fill=255)
 
@@ -213,8 +267,10 @@ def is_showing_power_msgbox():
 
 def update_page_index(pi):
     global pageIndex
+    global scroll_x
     lock.acquire()
     pageIndex = pi
+    scroll_x = 0
     lock.release()
 
 def receive_signal(signum, stack):
@@ -301,7 +357,7 @@ while True:
             os.system('systemctl poweroff')
             break
         elif page_index==1:
-            time.sleep(1)
+            time.sleep(0.1)
         else:
             time.sleep(0.2)
     except KeyboardInterrupt:
