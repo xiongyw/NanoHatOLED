@@ -88,6 +88,8 @@ lock = threading.Lock()
 
 global scroll_x
 scroll_x = 0
+global scroll_dir
+scroll_dir = -1
 global cached_ips
 cached_ips = ""
 global last_ip_update
@@ -165,6 +167,8 @@ def draw_page():
     global width
     global height
     global lock
+    global scroll_x
+    global scroll_dir
 
     lock.acquire()
     is_drawing = drawing
@@ -194,14 +198,35 @@ def draw_page():
             dotTop=dotTop+dotWidth+dotPadding
 
     if page_index==0:
-        text = time.strftime("%A")
-        draw.text((2,2),text,font=font14,fill=255)
-        text = time.strftime("%e %b %Y")
-        draw.text((2,18),text,font=font14,fill=255)
+        
+        # Get weekday (1-7) using the built-in time tuple (tm_wday: 0=Monday, 6=Sunday)
+        now = time.localtime()
+        weekday_num = now.tm_wday + 1
+        
+        date_text = time.strftime("%Y.%m.%d") + "({})".format(weekday_num)
+        
+        try:
+            date_w, _ = draw.textsize(date_text, font=fontb24)
+        except AttributeError:
+            bbox = draw.textbbox((0, 0), date_text, font=fontb24)
+            date_w = bbox[2] - bbox[0]
+            
+        if date_w > width - 4:
+            scroll_x += scroll_dir * 4
+            if scroll_x <= width - date_w - 2:
+                scroll_x = width - date_w - 2
+                scroll_dir = 1
+            elif scroll_x >= 2:
+                scroll_x = 2
+                scroll_dir = -1
+        else:
+            scroll_x = 2
+            
+        draw.text((scroll_x, 2), date_text, font=fontb24, fill=255)
+        
         text = time.strftime("%X")
-        draw.text((2,40),text,font=fontb24,fill=255)
+        draw.text((2,40), text, font=fontb24, fill=255)
     elif page_index==1:
-        global scroll_x
         # Uncomment next line to test fake long text
         # text = "1: line one 2: line two 3: line three "
         text = get_all_ips() + "   "
@@ -268,9 +293,11 @@ def is_showing_power_msgbox():
 def update_page_index(pi):
     global pageIndex
     global scroll_x
+    global scroll_dir
     lock.acquire()
     pageIndex = pi
     scroll_x = 0
+    scroll_dir = -1
     lock.release()
 
 def receive_signal(signum, stack):
@@ -292,7 +319,7 @@ def receive_signal(signum, stack):
                 update_page_index(3)
             draw_page()
         else:
-            pageIndex=0
+            update_page_index(0)
             draw_page()
         print('K1 released')
 
@@ -356,7 +383,7 @@ while True:
             time.sleep(1)
             os.system('systemctl poweroff')
             break
-        elif page_index==1:
+        elif page_index in (0, 1):
             time.sleep(0.1)
         else:
             time.sleep(0.2)
