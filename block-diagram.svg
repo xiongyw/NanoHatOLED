@@ -1,117 +1,599 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="850" viewBox="0 0 900 850">
-  <defs>
-    <!-- Arrowhead definitions -->
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="900"
+   height="850"
+   viewBox="0 0 900 850"
+   version="1.1"
+   id="svg29"
+   sodipodi:docname="block-diagram.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview29"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.5258824"
+     inkscape:cx="139.59136"
+     inkscape:cy="480.05012"
+     inkscape:window-width="3840"
+     inkscape:window-height="1511"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg29" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7" />
     </marker>
-    <marker id="arrow-signal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d32f2f" />
+    <!-- Arrowhead definitions -->
+    <marker
+       id="arrow"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 0 L 10 5 L 0 10 z"
+         fill="#333"
+         id="path1" />
+    </marker>
+    <marker
+       id="arrow-signal"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 0 L 10 5 L 0 10 z"
+         fill="#d32f2f"
+         id="path2" />
     </marker>
   </defs>
-
   <!-- Background -->
-  <rect width="100%" height="100%" fill="#ffffff" />
-
+  <rect
+     width="100%"
+     height="100%"
+     fill="#ffffff"
+     id="rect2" />
   <!-- Layer Boxes -->
   <!-- User Space Box -->
-  <rect x="30" y="40" width="840" height="340" rx="10" ry="10" fill="#e3f2fd" stroke="#1e88e5" stroke-width="2" />
-  <text x="45" y="70" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1565c0">User Space</text>
-
+  <rect
+     x="30"
+     y="40"
+     width="840"
+     height="340"
+     rx="10"
+     ry="10"
+     fill="#e3f2fd"
+     stroke="#1e88e5"
+     stroke-width="2"
+     id="rect3" />
+  <text
+     x="45"
+     y="70"
+     font-family="sans-serif"
+     font-size="20"
+     font-weight="bold"
+     fill="#1565c0"
+     id="text3">User Space</text>
   <!-- Kernel Space Box -->
-  <rect x="30" y="400" width="840" height="240" rx="10" ry="10" fill="#e8f5e9" stroke="#43a047" stroke-width="2" />
-  <text x="45" y="430" font-family="sans-serif" font-size="20" font-weight="bold" fill="#2e7d32">Kernel Space (Ubuntu 24.04)</text>
-
+  <rect
+     x="30"
+     y="400"
+     width="840"
+     height="240"
+     rx="10"
+     ry="10"
+     fill="#e8f5e9"
+     stroke="#43a047"
+     stroke-width="2"
+     id="rect4"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <text
+     x="45"
+     y="430"
+     font-family="sans-serif"
+     font-size="20px"
+     font-weight="bold"
+     fill="#2e7d32"
+     id="text4">Kernel Space (Ubuntu 24.04, kernel <tspan
+   style="fill:#ff0000"
+   id="tspan30">v4.14.52</tspan>)</text>
   <!-- Hardware Box -->
-  <rect x="30" y="660" width="840" height="150" rx="10" ry="10" fill="#fff3e0" stroke="#f4511e" stroke-width="2" />
-  <text x="45" y="690" font-family="sans-serif" font-size="20" font-weight="bold" fill="#d84315">Hardware</text>
-
+  <rect
+     x="30"
+     y="660"
+     width="840"
+     height="150"
+     rx="10"
+     ry="10"
+     fill="#fff3e0"
+     stroke="#f4511e"
+     stroke-width="2"
+     id="rect5" />
+  <text
+     x="45"
+     y="690"
+     font-family="sans-serif"
+     font-size="20"
+     font-weight="bold"
+     fill="#d84315"
+     id="text5">Hardware</text>
   <!-- ========================================== -->
   <!-- USER SPACE COMPONENTS                      -->
   <!-- ========================================== -->
-
   <!-- Left Side: Daemon / GPIO -->
-  <rect x="60" y="100" width="280" height="50" rx="5" ry="5" fill="#bbdefb" stroke="#1e88e5" stroke-width="1.5" />
-  <text x="200" y="120" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">nanohat-oled Daemon</text>
-  <text x="200" y="140" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#333">(Source/main.c)</text>
-
+  <rect
+     x="60"
+     y="100"
+     width="280"
+     height="50"
+     rx="5"
+     ry="5"
+     fill="#bbdefb"
+     stroke="#1e88e5"
+     stroke-width="1.5"
+     id="rect6" />
+  <text
+     x="200"
+     y="120"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text6">nanohat-oled Daemon</text>
+  <text
+     x="200"
+     y="140"
+     font-family="sans-serif"
+     font-size="12"
+     text-anchor="middle"
+     fill="#333"
+     id="text7">(Source/main.c)</text>
   <!-- Right Side: Python / OLED -->
-  <rect x="500" y="100" width="320" height="50" rx="5" ry="5" fill="#bbdefb" stroke="#1e88e5" stroke-width="1.5" />
-  <text x="660" y="120" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">Python UI Application</text>
-  <text x="660" y="140" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#333">(Python/bakebit_nanohat_oled.py + PIL)</text>
-
+  <rect
+     x="500"
+     y="100"
+     width="320"
+     height="50"
+     rx="5"
+     ry="5"
+     fill="#bbdefb"
+     stroke="#1e88e5"
+     stroke-width="1.5"
+     id="rect7" />
+  <text
+     x="660"
+     y="120"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text8">Python UI Application</text>
+  <text
+     x="660"
+     y="140"
+     font-family="sans-serif"
+     font-size="12"
+     text-anchor="middle"
+     fill="#333"
+     id="text9">(Python/bakebit_nanohat_oled.py + PIL)</text>
   <!-- Inter-Process Communication (Signals) -->
-  <line x1="340" y1="125" x2="490" y2="125" stroke="#d32f2f" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow-signal)" />
-  <text x="415" y="115" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#d32f2f">SIGUSR1, SIGUSR2, SIGALRM</text>
-
-  <rect x="500" y="190" width="320" height="50" rx="5" ry="5" fill="#bbdefb" stroke="#1e88e5" stroke-width="1.5" />
-  <text x="660" y="210" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">OLED Driver Library</text>
-  <text x="660" y="230" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#333">(Python/bakebit_128_64_oled.py)</text>
-
-  <rect x="500" y="280" width="320" height="40" rx="5" ry="5" fill="#bbdefb" stroke="#1e88e5" stroke-width="1.5" />
-  <text x="660" y="305" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">Python SMBus Module (smbus)</text>
-
+  <line
+     x1="340"
+     y1="125"
+     x2="490"
+     y2="125"
+     stroke="#d32f2f"
+     stroke-width="2"
+     stroke-dasharray="5,5"
+     marker-end="url(#arrow-signal)"
+     id="line9" />
+  <text
+     x="415"
+     y="115"
+     font-family="sans-serif"
+     font-size="12"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#d32f2f"
+     id="text10">SIGUSR1, SIGUSR2, SIGALRM</text>
+  <rect
+     x="500"
+     y="190"
+     width="320"
+     height="50"
+     rx="5"
+     ry="5"
+     fill="#bbdefb"
+     stroke="#1e88e5"
+     stroke-width="1.5"
+     id="rect10" />
+  <text
+     x="660"
+     y="210"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text11">OLED Driver Library</text>
+  <text
+     x="660"
+     y="230"
+     font-family="sans-serif"
+     font-size="12"
+     text-anchor="middle"
+     fill="#333"
+     id="text12">(Python/bakebit_128_64_oled.py)</text>
+  <rect
+     x="500"
+     y="280"
+     width="320"
+     height="40"
+     rx="5"
+     ry="5"
+     fill="#bbdefb"
+     stroke="#1e88e5"
+     stroke-width="1.5"
+     id="rect12" />
+  <text
+     x="660"
+     y="305"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text13">Python SMBus Module (smbus)</text>
   <!-- User Space Connections -->
-  <line x1="660" y1="150" x2="660" y2="180" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="660" y1="240" x2="660" y2="270" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-
+  <line
+     x1="660"
+     y1="150"
+     x2="660"
+     y2="176.73656"
+     stroke="#333333"
+     stroke-width="1.78244"
+     marker-end="url(#arrow)"
+     id="line13"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <line
+     x1="660"
+     y1="240"
+     x2="660"
+     y2="267.0629"
+     stroke="#333333"
+     stroke-width="1.80419"
+     marker-end="url(#arrow)"
+     id="line14"
+     style="marker-end:url(#ConcaveTriangle)" />
   <!-- ========================================== -->
   <!-- KERNEL SPACE COMPONENTS                    -->
   <!-- ========================================== -->
-
   <!-- Left Side: GPIO Sysfs -->
-  <rect x="60" y="440" width="280" height="40" rx="5" ry="5" fill="#c8e6c9" stroke="#43a047" stroke-width="1.5" />
-  <text x="200" y="465" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">sysfs (/sys/class/gpio)</text>
-
-  <rect x="60" y="510" width="280" height="40" rx="5" ry="5" fill="#c8e6c9" stroke="#43a047" stroke-width="1.5" />
-  <text x="200" y="535" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">GPIO Core Subsystem</text>
-
-  <rect x="60" y="580" width="280" height="40" rx="5" ry="5" fill="#c8e6c9" stroke="#43a047" stroke-width="1.5" />
-  <text x="200" y="605" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">Hardware GPIO Driver</text>
-
+  <rect
+     x="60"
+     y="440"
+     width="280"
+     height="40"
+     rx="5"
+     ry="5"
+     fill="#c8e6c9"
+     stroke="#43a047"
+     stroke-width="1.5"
+     id="rect14" />
+  <text
+     x="200"
+     y="465"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text14">sysfs (/sys/class/gpio)</text>
+  <rect
+     x="60"
+     y="510"
+     width="280"
+     height="40"
+     rx="5"
+     ry="5"
+     fill="#c8e6c9"
+     stroke="#43a047"
+     stroke-width="1.5"
+     id="rect15" />
+  <text
+     x="200"
+     y="535"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text15">GPIO Core Subsystem</text>
+  <rect
+     x="60"
+     y="580"
+     width="280"
+     height="40"
+     rx="5"
+     ry="5"
+     fill="#c8e6c9"
+     stroke="#43a047"
+     stroke-width="1.5"
+     id="rect16" />
+  <text
+     x="200"
+     y="605"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text16">Hardware GPIO Driver</text>
   <!-- Right Side: I2C Dev -->
-  <rect x="500" y="440" width="320" height="40" rx="5" ry="5" fill="#c8e6c9" stroke="#43a047" stroke-width="1.5" />
-  <text x="660" y="465" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">Device Node (/dev/i2c-0)</text>
-
-  <rect x="500" y="510" width="320" height="40" rx="5" ry="5" fill="#c8e6c9" stroke="#43a047" stroke-width="1.5" />
-  <text x="660" y="535" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">I2C Core Subsystem (i2c-dev)</text>
-
-  <rect x="500" y="580" width="320" height="40" rx="5" ry="5" fill="#c8e6c9" stroke="#43a047" stroke-width="1.5" />
-  <text x="660" y="605" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">Hardware I2C Bus Controller</text>
-
+  <rect
+     x="500"
+     y="440"
+     width="320"
+     height="40"
+     rx="5"
+     ry="5"
+     fill="#c8e6c9"
+     stroke="#43a047"
+     stroke-width="1.5"
+     id="rect17" />
+  <text
+     x="660"
+     y="465"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text17">Device Node (/dev/i2c-0)</text>
+  <rect
+     x="500"
+     y="510"
+     width="320"
+     height="40"
+     rx="5"
+     ry="5"
+     fill="#c8e6c9"
+     stroke="#43a047"
+     stroke-width="1.5"
+     id="rect18" />
+  <text
+     x="660"
+     y="535"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text18">I2C Core Subsystem (i2c-dev)</text>
+  <rect
+     x="500"
+     y="580"
+     width="320"
+     height="40"
+     rx="5"
+     ry="5"
+     fill="#c8e6c9"
+     stroke="#43a047"
+     stroke-width="1.5"
+     id="rect19" />
+  <text
+     x="660"
+     y="605"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text19">Hardware I2C Bus Controller</text>
   <!-- User to Kernel Connections -->
-  <line x1="200" y1="430" x2="200" y2="150" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-  <text x="210" y="320" font-family="sans-serif" font-size="14" fill="#555">read() / epoll()</text>
-
-  <line x1="660" y1="320" x2="660" y2="430" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-  <text x="670" y="380" font-family="sans-serif" font-size="14" fill="#555">ioctl() SMBus writes</text>
-
+  <line
+     x1="196"
+     y1="438.57306"
+     x2="196"
+     y2="163.35715"
+     stroke="#333333"
+     stroke-width="2"
+     marker-end="url(#arrow)"
+     id="line19"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <text
+     x="210"
+     y="320"
+     font-family="sans-serif"
+     font-size="14"
+     fill="#555"
+     id="text20">read() / epoll()</text>
+  <line
+     x1="660"
+     y1="320"
+     x2="660"
+     y2="426.25797"
+     stroke="#333333"
+     stroke-width="1.93196"
+     marker-end="url(#arrow)"
+     id="line20"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <text
+     x="670"
+     y="364"
+     font-family="sans-serif"
+     font-size="14px"
+     fill="#555555"
+     id="text21">ioctl() SMBus writes</text>
   <!-- Kernel Connections -->
-  <line x1="200" y1="500" x2="200" y2="480" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="200" y1="570" x2="200" y2="550" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-
-  <line x1="660" y1="480" x2="660" y2="500" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="660" y1="550" x2="660" y2="570" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-
-
+  <line
+     x1="195.99998"
+     y1="508.95111"
+     x2="195.99998"
+     y2="489.93649"
+     stroke="#333333"
+     stroke-width="2"
+     marker-end="url(#arrow)"
+     id="line21"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <line
+     x1="196"
+     y1="578.71942"
+     x2="196"
+     y2="560.84369"
+     stroke="#333333"
+     stroke-width="2.00001"
+     marker-end="url(#arrow)"
+     id="line22"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <line
+     x1="660"
+     y1="480"
+     x2="660"
+     y2="497.76581"
+     stroke="#333333"
+     stroke-width="2.7432"
+     marker-end="url(#arrow)"
+     id="line23"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <line
+     x1="660"
+     y1="550"
+     x2="660"
+     y2="565.18494"
+     stroke="#333333"
+     stroke-width="2.76506"
+     marker-end="url(#arrow)"
+     id="line24"
+     style="marker-end:url(#ConcaveTriangle)" />
   <!-- ========================================== -->
   <!-- HARDWARE COMPONENTS                        -->
   <!-- ========================================== -->
-
   <!-- Left Side: Buttons -->
-  <rect x="60" y="730" width="280" height="50" rx="5" ry="5" fill="#ffe0b2" stroke="#f4511e" stroke-width="1.5" />
-  <text x="200" y="750" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">Physical Push Buttons</text>
-  <text x="200" y="770" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#333">(K1, K2, K3 on GPIO Pins)</text>
-
+  <rect
+     x="60"
+     y="730"
+     width="280"
+     height="50"
+     rx="5"
+     ry="5"
+     fill="#ffe0b2"
+     stroke="#f4511e"
+     stroke-width="1.5"
+     id="rect24" />
+  <text
+     x="200"
+     y="750"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text24">Physical Push Buttons</text>
+  <text
+     x="200"
+     y="770"
+     font-family="sans-serif"
+     font-size="12"
+     text-anchor="middle"
+     fill="#333"
+     id="text25">(K1, K2, K3 on GPIO Pins)</text>
   <!-- Right Side: OLED -->
-  <rect x="500" y="730" width="320" height="50" rx="5" ry="5" fill="#ffe0b2" stroke="#f4511e" stroke-width="1.5" />
-  <text x="660" y="750" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#000">BakeBit 128x64 OLED</text>
-  <text x="660" y="770" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#333">(SSD1306 Controller @ 0x3c)</text>
-
+  <rect
+     x="500"
+     y="730"
+     width="320"
+     height="50"
+     rx="5"
+     ry="5"
+     fill="#ffe0b2"
+     stroke="#f4511e"
+     stroke-width="1.5"
+     id="rect25" />
+  <text
+     x="660"
+     y="750"
+     font-family="sans-serif"
+     font-size="16"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#000"
+     id="text26">BakeBit 128x64 OLED</text>
+  <text
+     x="660"
+     y="770"
+     font-family="sans-serif"
+     font-size="12"
+     text-anchor="middle"
+     fill="#333"
+     id="text27">(SSD1306 Controller @ 0x3c)</text>
   <!-- Kernel to Hardware Connections -->
-  <line x1="200" y1="720" x2="200" y2="620" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-  <text x="210" y="675" font-family="sans-serif" font-size="14" fill="#555">Electrical Signals (Input)</text>
-
-  <line x1="660" y1="620" x2="660" y2="720" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
-  <text x="670" y="675" font-family="sans-serif" font-size="14" fill="#555">I2C Bus (SDA / SCL)</text>
-
+  <line
+     x1="196"
+     y1="729.18286"
+     x2="196"
+     y2="634.52405"
+     stroke="#333333"
+     stroke-width="2"
+     marker-end="url(#arrow)"
+     id="line27"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <text
+     x="210"
+     y="675"
+     font-family="sans-serif"
+     font-size="14"
+     fill="#555"
+     id="text28">Electrical Signals (Input)</text>
+  <line
+     x1="660"
+     y1="620"
+     x2="660"
+     y2="717.08417"
+     stroke="#333333"
+     stroke-width="2.15569"
+     marker-end="url(#arrow)"
+     id="line28"
+     style="marker-end:url(#ConcaveTriangle)" />
+  <text
+     x="670"
+     y="675"
+     font-family="sans-serif"
+     font-size="14"
+     fill="#555"
+     id="text29">I2C Bus (SDA / SCL)</text>
 </svg>
