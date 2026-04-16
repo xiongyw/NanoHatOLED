@@ -70,19 +70,34 @@ echo "======================="
 gcc Source/daemonize.c Source/main.c -lrt -lpthread -o NanoHatOLED
 echo "Compiled NanoHatOLED"
 
-if [ ! -f /usr/local/bin/oled-start ]; then
-    cat >/usr/local/bin/oled-start <<EOL
-#!/bin/sh
-EOL
-    echo "cd $PWD" >> /usr/local/bin/oled-start
-    echo "./NanoHatOLED" >> /usr/local/bin/oled-start
-    sed -i -e '$i \/usr/local/bin/oled-start\n' /etc/rc.local
-    chmod 755 /usr/local/bin/oled-start
+# Disable rc.local method if it exists
+if [ -f /etc/rc.local ]; then
+    sed -i '\/usr\/local\/bin\/oled-start/d' /etc/rc.local
 fi
-echo "Make NanoHatOLED autostart."
+if [ -f /usr/local/bin/oled-start ]; then
+    rm -f /usr/local/bin/oled-start
+fi
 
-echo "Disabling rc.local systemd service to prevent duplicate daemon starts..."
-systemctl disable rc.local || true
+# Create systemd service
+cat >/etc/systemd/system/nanohatoled.service <<EOL
+[Unit]
+Description=NanoHatOLED Service
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory=$PWD
+ExecStart=$PWD/NanoHatOLED
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+systemctl daemon-reload
+systemctl enable nanohatoled.service
+echo "Make NanoHatOLED autostart using systemd."
 
 echo " "
 echo "Please restart to implement changes!"
